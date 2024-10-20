@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  get "home/index"
+    
+  #user_controllers
+  get "sessions/new"
+  get "users/new"
+  get "users/create"
+  
+  #sessions_controllers
+  root 'sessions#new'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
+  resources :users, only: [:new, :create]
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,5 +24,4 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "home#index"
 end
