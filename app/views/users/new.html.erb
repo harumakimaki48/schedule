@@ -1,0 +1,37 @@
+<div class="flex justify-center items-center h-screen">
+  <div class="w-full max-w-xs">
+    <%= form_with model: @user, local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
+    
+      <h1 class="text-center text-2xl mb-4">アカウント作成</h1>
+
+      <div class="mb-4">
+        <%= form.label :user_number, 'ユーザー番号', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :user_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "ユーザー番号を入力" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :user_name, 'ユーザー名', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :user_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "ユーザー名を入力" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :password, 'パスワード', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "パスワードを入力" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :password_confirmation, 'パスワード確認', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "パスワードを再入力" %>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <%= form.submit '登録', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+
+    <% end %>
+
+    <div class="text-center mt-4">
+      <%= link_to 'ログインはこちら', login_path, class: "text-blue-500 hover:text-blue-700 font-bold" %>
+    </div>
+  </div>
+</div>
