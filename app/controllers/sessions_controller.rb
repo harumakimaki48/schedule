@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     @user = login(params[:user_number], params[:password])
 
     if @user
-      redirect_to root_path, notice: "ログインに成功しました。"
+      redirect_to login_room_path, notice: "ログインに成功しました。"
     else
       flash.now[:alert] = "ログインに失敗しました。"
-      render :new
+      redirect_to login_path
     end
   end
 

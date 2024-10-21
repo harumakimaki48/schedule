@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :new, :create ]
 
+  # rooms
+  resources :rooms, only: [ :new, :create ]
+  get "/rooms/login", to: "rooms#login", as: "login_room"
+  post "/rooms/login", to: "rooms#login_process", as: "rooms_login_process"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
