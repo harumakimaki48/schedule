@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  # 中間テーブルとの関係性
+  has_many :users_rooms
+  has_many :rooms, through: :users_rooms
+
   # バリデーションの追加
   validates :user_number, presence: true, uniqueness: true
   validates :user_name, presence: true
