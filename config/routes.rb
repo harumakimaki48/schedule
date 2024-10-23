@@ -1,31 +1,32 @@
 Rails.application.routes.draw do
-  # user_controllers
-  get "sessions/new"
-  get "users/new"
-  get "users/create"
-
   # sessions_controllers
   root "sessions#new"
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  # users_controllers
   resources :users, only: [ :new, :create ]
 
-  # rooms
+  # rooms_controllers
   resources :rooms, only: [ :new, :create ]
   get "/rooms/login", to: "rooms#login", as: "login_room"
   post "/rooms/login", to: "rooms#login_process", as: "rooms_login_process"
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # schedules_controllers for each room
+  resources :rooms do
+    resources :schedules do
+      collection do
+        get "select_date", to: "schedules#select_date", as: "select_date"
+        post "choose_date", to: "schedules#choose_date", as: "choose_date"
+      end
+    end
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Reveal health status on /up
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # Render dynamic PWA files
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
 end

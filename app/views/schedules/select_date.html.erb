@@ -1,0 +1,16 @@
+<h1 class="text-center text-2xl mb-4">日程を選択</h1>
+
+<div class="flex justify-center items-center h-screen">
+  <div class="w-full max-w-xs">
+    <%= form_with url: choose_date_room_schedules_path(@room), local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">日程を選択</label>
+        <!-- `select_tag` を `f.select` に変更 -->
+        <%= f.select :date, options_for_select(@available_dates.map { |date| [date.strftime("%m/%d (%a)"), date] }), class: "form-select" %>
+      </div>
+      <div class="flex items-center justify-between">
+        <%= f.submit '日程を選択', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    <% end %>
+  </div>
+</div>

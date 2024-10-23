@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2024-10-22 19:54:26
+  schedule_category: MyString
+  fix: false
+  date_start: 2024-10-22
+  date_end: 2024-10-22
+  room: one
+
+two:
+  time: 2024-10-22 19:54:26
+  schedule_category: MyString
+  fix: false
+  date_start: 2024-10-22
+  date_end: 2024-10-22
+  room: two

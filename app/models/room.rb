@@ -3,6 +3,7 @@ class Room < ApplicationRecord
 
   has_many :users_rooms
   has_many :users, through: :users_rooms
+  has_many :schedules, dependent: :destroy
 
   has_secure_password  # password_digestを利用してパスワードを暗号化
 

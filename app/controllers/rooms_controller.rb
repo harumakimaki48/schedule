@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
                 @room.users << current_user  # ユーザーを部屋に追加
             end
 
-          redirect_to @room, notice: "部屋に入りました"
+            redirect_to select_date_room_schedules_path(@room), notice: "部屋に入りました"
         else
           flash.now[:alert] = "部屋番号またはパスワードが間違っています"
           render :login  # 修正: login_formではなくloginビューを再表示
