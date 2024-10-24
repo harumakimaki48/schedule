@@ -1,0 +1,61 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 shadow-md rounded-lg">
+
+  <!-- ヘッダー部分：日付を中央に表示し、ハンバーガーメニューも追加 -->
+  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
+    <h1 class="text-lg font-bold mx-auto">
+      <%= @selected_date.present? ? @selected_date.strftime('%m/%d (%a)') : "日付が選択されていません" %>
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <!-- クラス名が正しいか確認 -->
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- スケジュール追加ボタン -->
+  <div class="flex justify-end mt-4">
+    <%= link_to '追加', new_room_schedule_path(@room, date: @selected_date), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+
+  <!-- スケジュール一覧 -->
+<div class="schedule-list mt-4">
+  <table class="min-w-full bg-white border-collapse">
+    <thead>
+      <tr>
+        <th class="border px-4 py-2">MAST</th>
+        <th class="border px-4 py-2">TIME</th>
+        <th class="border px-4 py-2">CONTENT</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <% if @schedules.present? %>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <!-- 固定されたスケジュールには押しピンアイコンを表示 -->
+            <td class="border px-4 py-2 text-center">
+              <% if schedule.fix %>
+                <i class="fa-solid fa-thumbtack"></i>
+              <% end %>
+            </td>
+            <!-- 時間を表示 -->
+            <td class="border px-4 py-2 text-center">
+              <%= schedule.time_start.strftime('%H:%M') %> 〜 <%= schedule.time_end.strftime('%H:%M') %>
+            </td>
+            <!-- Contentを表示。リンクとして編集画面に飛ぶ -->
+            <td class="border px-4 py-2 text-center">
+              <%= link_to schedule.content, edit_room_schedule_path(@room, schedule), class: "text-blue-500 hover:text-blue-700 underline" %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <!-- スケジュールがない場合 -->
+        <tr>
+          <td class="border px-4 py-2 text-center" colspan="3">スケジュールがありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
