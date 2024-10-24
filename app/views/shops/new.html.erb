@@ -1,0 +1,50 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+
+  <!-- ヘッダー部分：SHOP新規登録とハンバーガーメニュー -->
+  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
+    <h1 class="text-lg font-bold mx-auto">
+      SHOP新規登録
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- フォーム部分 -->
+  <div class="mt-4">
+    <%= form_with model: @shop, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+      
+      <!-- Shop Name -->
+      <div class="mb-4">
+        <%= f.label :shop_name, 'Shop Name', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.text_field :shop_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <!-- Park選択 -->
+      <div class="mb-4">
+        <%= f.label :park_id, 'Park', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.collection_select :park_id, Park.all, :id, :park_name, { prompt: 'Select Park' }, { id: 'park-select', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+
+      <!-- Area (Parkの選択に基づき動的に更新されるArea一覧) -->
+      <div class="mb-4">
+        <%= f.label :area_id, 'Area', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.collection_select :area_id, [], :id, :area_name, { prompt: 'Select Area' }, { id: 'area-select', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+
+      <!-- Shop Image -->
+      <div class="mb-4">
+        <%= f.label :shop_image, 'Shop Image', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.file_field :shop_image, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <!-- Submitボタン -->
+      <div class="flex justify-end">
+        <%= f.submit "新規作成", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+</div>

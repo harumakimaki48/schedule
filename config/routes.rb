@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "shops/index"
+  get "shops/new"
+  get "shops/create"
+  get "shops/edit"
+  get "shops/update"
+  get "shops/destroy"
   # sessions_controllers
   root "sessions#new"
   get "login", to: "sessions#new"
@@ -13,6 +19,9 @@ Rails.application.routes.draw do
   get "/rooms/login", to: "rooms#login", as: "login_room"
   post "/rooms/login", to: "rooms#login_process", as: "rooms_login_process"
 
+  # shop_controllers
+  resources :shops
+
   # schedules_controllers for each room
   resources :rooms do
     resources :schedules do
@@ -21,6 +30,11 @@ Rails.application.routes.draw do
         post "choose_date", to: "schedules#choose_date", as: "choose_date"
       end
     end
+  end
+
+  # 動的にParkに関連するAreaを取得
+  resources :areas, only: [] do
+    get "by_park/:park_id", on: :collection, to: "areas#by_park"
   end
 
   # Reveal health status on /up
