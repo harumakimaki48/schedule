@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def create
     @user = login(params[:user_number], params[:password])
-
     if @user
       redirect_to login_room_path, notice: "ログインに成功しました。"
     else

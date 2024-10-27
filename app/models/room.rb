@@ -1,11 +1,11 @@
 class Room < ApplicationRecord
-  belongs_to :user # 部屋の作成者
-
+  belongs_to :user
   has_many :users_rooms
   has_many :users, through: :users_rooms
   has_many :schedules, dependent: :destroy
+  has_many :foods, dependent: :destroy
 
-  has_secure_password  # password_digestを利用してパスワードを暗号化
+  has_secure_password
 
   validates :room_number, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }
