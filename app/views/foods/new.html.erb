@@ -1,0 +1,62 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+  <!-- ヘッダー部分：FOOD情報一覧とハンバーガーメニュー -->
+  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
+    <h1 class="text-lg font-bold mx-auto">
+      FOOD
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+    <!-- Turboに対応するためlocal: trueを削除 -->
+    <%= form_with(model: [@room, @food]) do |f| %>
+
+      <!-- メニュー名 -->
+      <div class="mb-4">
+        <%= f.label :menu_name, 'メニュー名', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :menu_name, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 価格 -->
+      <div class="mb-4">
+        <%= f.label :price, '価格', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :price, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- お気に入り -->
+      <div class="mb-4 flex items-center">
+        <%= f.label :favorite, 'お気に入り', class: 'block text-gray-700 text-sm font-bold mb-2 mr-2' %>
+        <%= f.check_box :favorite %>
+        <i class="fa-solid fa-star ml-2"></i>
+      </div>
+
+      <!-- ショップの選択（複数選択可能） -->
+      <div class="mb-4">
+        <%= f.label :shop_ids, '取扱店舗（複数選択可能）', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <div class="border rounded p-2">
+          <% @shops.each do |shop| %>
+            <div class="mb-2 flex items-center">
+              <%= check_box_tag 'food[shop_ids][]', shop.id, @food.shop_ids.include?(shop.id), id: "shop_#{shop.id}" %>
+              <%= label_tag "shop_#{shop.id}", shop.shop_name, class: 'ml-2 text-gray-700' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 写真アップロード（Active Storage） -->
+      <div class="mb-4">
+        <%= f.label :shop_image, 'Shop Image', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.file_field :shop_image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="flex justify-end">
+        <%= f.submit '保存', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+      </div>
+    <% end %>
+  </div>
+</div>

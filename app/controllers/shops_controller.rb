@@ -3,7 +3,18 @@ class ShopsController < ApplicationController
   before_action :set_parks_and_areas, only: [ :new, :edit ]
 
   def index
-    @shops = Shop.all
+    if params[:park_id].present?
+      begin
+        @shops = Shop.where(park_id: params[:park_id]).order(:shop_name)
+        render json: @shops.select(:id, :shop_name)
+      rescue => e
+        logger.error "Error fetching shops: #{e.message}"
+        render json: { error: "Error fetching shops" }, status: 500
+      end
+    else
+      @shops = Shop.all.order(:shop_name)
+      render :index # 必要であれば、HTMLビュー用にこの行を維持
+    end
   end
 
   def new
@@ -43,7 +54,11 @@ class ShopsController < ApplicationController
 
   def set_parks_and_areas
     @parks = Park.all
-    @areas = @shop&.park_id.present? ? Area.where(park_id: @shop.park_id) : []
+    @areas = if defined?(@shop) && @shop.present? && @shop.park_id.present?
+               Area.where(park_id: @shop.park_id)
+    else
+               []
+    end
   end
 
   def shop_params

@@ -1,0 +1,58 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+  <!-- ヘッダー部分：FOOD情報一覧とハンバーガーメニュー -->
+  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
+    <h1 class="text-lg font-bold mx-auto">
+      FOOD
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- パークの選択と新規追加ボタン -->
+  <div class="flex justify-between items-center mt-4">
+    <!-- パークの選択ボタン -->
+    <div>
+      <%= link_to 'LAND', room_foods_path(@room, park: 1), class: 'bg-blue-500 text-white px-4 py-2 rounded mr-2' %>
+      <%= link_to 'SEA', room_foods_path(@room, park: 2), class: 'bg-blue-500 text-white px-4 py-2 rounded' %>
+    </div>
+
+    <!-- 新規追加ボタン -->
+    <div>
+      <%= link_to '新規追加', new_room_food_path(@room), class: 'bg-green-500 text-white px-4 py-2 rounded' %>
+    </div>
+  </div>
+
+  <!-- FOODテーブル -->
+  <table class="min-w-full bg-white border-collapse mt-4">
+    <thead>
+      <tr>
+        <th class="border px-4 py-2">Favorite</th>
+        <th class="border px-4 py-2">Menu Name</th>
+        <th class="border px-4 py-2">Shops</th>
+        <th class="border px-4 py-2">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td class="border px-4 py-2">
+            <%= food.favorite ? '★' : '' %>
+          </td>
+          <td class="border px-4 py-2">
+            <%= link_to food.menu_name, edit_room_food_path(@room, food), class: 'text-blue-500 hover:text-blue-700' %>
+          </td>
+          <td class="border px-4 py-2">
+            <% food.shops.each do |shop| %>
+              <%= link_to shop.shop_name, shop_path(shop), class: 'text-blue-500 hover:text-blue-700' %><br>
+            <% end %>
+          </td>
+          <td class="border px-4 py-2"><%= food.price.to_i %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

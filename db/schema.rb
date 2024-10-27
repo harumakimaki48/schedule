@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_24_171541) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_25_142946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,25 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_171541) do
     t.datetime "updated_at", null: false
     t.bigint "park_id", null: false
     t.index ["park_id"], name: "index_areas_on_park_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "menu_name"
+    t.decimal "price"
+    t.boolean "favorite"
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_foods_on_room_id"
+  end
+
+  create_table "foods_shops", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_foods_shops_on_food_id"
+    t.index ["shop_id"], name: "index_foods_shops_on_shop_id"
   end
 
   create_table "parks", force: :cascade do |t|
@@ -116,6 +135,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_171541) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "areas", "parks"
+  add_foreign_key "foods", "rooms"
+  add_foreign_key "foods_shops", "foods"
+  add_foreign_key "foods_shops", "shops"
   add_foreign_key "rooms", "users"
   add_foreign_key "schedules", "rooms"
   add_foreign_key "shops", "areas"

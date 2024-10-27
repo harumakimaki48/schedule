@@ -1,29 +1,23 @@
 Rails.application.routes.draw do
-  get "shops/index"
-  get "shops/new"
-  get "shops/create"
-  get "shops/edit"
-  get "shops/update"
-  get "shops/destroy"
   # sessions_controllers
   root "sessions#new"
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  # rooms_controllers の login ルートをトップレベルに定義
+  get "/rooms/login", to: "rooms#login", as: "login_room"
+  post "/rooms/login", to: "rooms#login_process", as: "login_room_process"
+
   # users_controllers
   resources :users, only: [ :new, :create ]
 
   # rooms_controllers
-  resources :rooms, only: [ :new, :create ]
-  get "/rooms/login", to: "rooms#login", as: "login_room"
-  post "/rooms/login", to: "rooms#login_process", as: "rooms_login_process"
+  resources :rooms, only: [ :new, :create ] do
+    # foods_controllers
+    resources :foods, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
-  # shop_controllers
-  resources :shops
-
-  # schedules_controllers for each room
-  resources :rooms do
+    # schedules_controllers for each room
     resources :schedules do
       collection do
         get "select_date", to: "schedules#select_date", as: "select_date"
@@ -31,6 +25,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # shop_controllers
+  resources :shops
 
   # 動的にParkに関連するAreaを取得
   resources :areas, only: [] do
