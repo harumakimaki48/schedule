@@ -53,7 +53,7 @@
     </thead>
     <tbody>
       <% @payments.each do |payment| %>
-        <tr class="<%= 'bg-yellow-100' if payment.status == '未精算' %>">
+        <tr>
           <td class="border px-4 py-2"><%= payment.recipient&.user_name || 'なし' %></td>
           <td class="border px-4 py-2"><%= payment.date&.strftime("%-m / %-d") || '未設定' %></td>
           <td class="border px-4 py-2"><%= payment.content %></td>
