@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 
+
 // Parkを選択したときにAreaを更新する処理
 document.addEventListener('turbo:load', function () {
     const parkSelect = document.getElementById('park-select');

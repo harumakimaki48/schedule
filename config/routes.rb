@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :rooms, only: [ :new, :create ] do
     # foods_controllers
     resources :foods, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    # resources_controllers
+    resources :payments
 
     # schedules_controllers for each room
     resources :schedules do

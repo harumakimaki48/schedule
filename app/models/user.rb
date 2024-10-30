@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :users_rooms
   has_many :rooms, through: :users_rooms
 
+  has_many :payments  # 支払元としての支払い
+  has_many :received_payments, class_name: "Payment", foreign_key: "recipient_id"  # 支払先としての支払い
+
   # バリデーションの追加
   validates :user_number, presence: true, uniqueness: true
   validates :user_name, presence: true
