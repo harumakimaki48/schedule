@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_25_142946) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_074634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_142946) do
     t.string "park_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.bigint "recipient_id"
+    t.bigint "schedule_id"
+    t.string "content"
+    t.integer "amount"
+    t.string "status", default: "未精算"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date"
+    t.string "payment_date"
+    t.index ["recipient_id"], name: "index_payments_on_recipient_id"
+    t.index ["room_id"], name: "index_payments_on_room_id"
+    t.index ["schedule_id"], name: "index_payments_on_schedule_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -138,6 +156,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_142946) do
   add_foreign_key "foods", "rooms"
   add_foreign_key "foods_shops", "foods"
   add_foreign_key "foods_shops", "shops"
+  add_foreign_key "payments", "rooms"
+  add_foreign_key "payments", "schedules"
+  add_foreign_key "payments", "users"
+  add_foreign_key "payments", "users", column: "recipient_id"
   add_foreign_key "rooms", "users"
   add_foreign_key "schedules", "rooms"
   add_foreign_key "shops", "areas"

@@ -1,0 +1,67 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+  <!-- ヘッダー部分：精算編集とハンバーガーメニュー -->
+  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
+    <h1 class="text-lg font-bold mx-auto">
+      精算編集
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- フォーム部分 -->
+  <div class="mt-4">
+    <%= form_with model: [@room, @payment], method: :patch, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+
+      <!-- 支払先 -->
+      <div class="mb-4">
+        <%= f.label :recipient_id, '支払先', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.collection_select :recipient_id, @users, :id, :user_name, { include_blank: true }, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 日付 -->
+      <div class="mb-4">
+        <%= f.label :date, '日付', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.select :date, options_for_select(@dates.map { |date| [date.strftime("%Y-%m-%d"), date] }, selected: @payment.date), {}, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 支払内容 -->
+      <div class="mb-4">
+        <%= f.label :content, '支払内容', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 支払金額 -->
+      <div class="mb-4">
+        <%= f.label :amount, '支払金額', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.number_field :amount, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- レシート画像 -->
+      <div class="mb-4">
+        <%= f.label :receipt_image, 'レシート画像', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+
+        <% if @payment.receipt_image.attached? %>
+          <div class="mb-2">
+            <%= link_to 'レシート (現在のファイル)', url_for(@payment.receipt_image), target: '_blank', class: 'text-blue-500' %>
+          </div>
+          <div class="flex items-center mb-4">
+            <%= f.check_box :remove_receipt_image %>
+            <%= f.label :remove_receipt_image, 'レシートを削除する', class: 'text-sm text-gray-700 ml-2' %>
+          </div>
+        <% end %>
+
+        <%= f.file_field :receipt_image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 削除ボタンと更新ボタン -->
+      <div class="flex justify-between items-center mt-4">
+        <%= link_to '削除', room_payment_path(@room, @payment), data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: "bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= f.submit "更新", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+</div>

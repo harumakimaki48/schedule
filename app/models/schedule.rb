@@ -1,5 +1,6 @@
 class Schedule < ApplicationRecord
   belongs_to :room
+  has_many :payments, dependent: :destroy
 
   # Roomのdate_startとdate_endを自動的にセット
   before_save :set_dates_from_room
