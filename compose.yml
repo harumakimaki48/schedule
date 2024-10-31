@@ -25,7 +25,6 @@ services:
       - .:/myapp
     environment:
       TZ: Asia/Tokyo
-      MYAPP_DATABASE_PASSWORD: ${MYAPP_DATABASE_PASSWORD}
     ports:
       - "3000:3000"
     user: "1000:1000"
