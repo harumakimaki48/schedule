@@ -7,13 +7,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-# Parkデータが存在しない場合のみ新規作成
-park_data = [
-  { park_name: "LAND" },
-  { park_name: "SEA" }
-]
-
-park_data.each do |park_attrs|
-  Park.find_or_create_by(park_name: park_attrs[:park_name])
-end

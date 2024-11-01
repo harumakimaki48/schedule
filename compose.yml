@@ -2,6 +2,7 @@ services:
   db:
     image: postgres
     restart: always
+    platform: linux/amd64
     environment:
       TZ: Asia/Tokyo
       POSTGRES_PASSWORD: password
@@ -25,7 +26,6 @@ services:
       - .:/myapp
     environment:
       TZ: Asia/Tokyo
-      DATABASE_URL: ${DATABASE_URL}
     ports:
       - "3000:3000"
     user: "1000:1000"

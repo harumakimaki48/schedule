@@ -1,9 +1,7 @@
-<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
   <!-- ヘッダー部分：精算情報一覧とハンバーガーメニュー -->
-  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
-    <h1 class="text-lg font-bold mx-auto">
-      精算表
-    </h1>
+  <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
+    <h1 class="text-lg sm:text-base font-bold mx-auto">精算表</h1>
     <!-- ハンバーガーメニュー -->
     <div>
       <button class="text-gray-600 focus:outline-none">
@@ -18,22 +16,22 @@
     <div>
       <% if @users.present? %>
         <% @users.each do |user| %>
-          <%= link_to user.user_name, room_payments_path(@room, user_id: user.id), class: 'bg-blue-500 text-white px-4 py-2 rounded mr-2' %>
+          <%= link_to user.user_name, room_payments_path(@room, user_id: user.id), class: 'bg-blue-500 text-white px-4 py-2 sm:px-2 sm:py-1 rounded mr-2 text-sm sm:text-xs' %>
         <% end %>
       <% else %>
-        <p>No users found.</p>
+        <p class="text-sm sm:text-xs">No users found.</p>
       <% end %>
     </div>
 
     <!-- 新規追加ボタン -->
     <div>
-      <%= link_to '追加', new_room_payment_path(@room), class: 'bg-green-500 text-white px-4 py-2 rounded' %>
+      <%= link_to '追加', new_room_payment_path(@room), class: 'bg-green-500 text-white px-4 py-2 sm:px-2 sm:py-1 rounded text-sm sm:text-xs' %>
     </div>
   </div>
 
   <!-- 合計金額表示 -->
   <% if @total_amount.present? %>
-    <div class="mt-4 text-right font-bold text-lg">
+    <div class="mt-4 text-right font-bold text-lg sm:text-base">
       <%= @filtered_user_name %>へ支払い: <%= @total_amount %>円
     </div>
   <% end %>
@@ -42,32 +40,32 @@
   <table class="min-w-full bg-white border-collapse mt-4">
     <thead>
       <tr>
-        <th class="border px-4 py-2">支払先</th>
-        <th class="border px-4 py-2">日付</th>
-        <th class="border px-4 py-2">支払内容</th>
-        <th class="border px-4 py-2">支払金額</th>
-        <th class="border px-4 py-2">レシート</th>
-        <th class="border px-4 py-2">状態</th>
-        <th class="border px-4 py-2">編集</th> <!-- 編集を右側に移動 -->
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">支払先</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">日付</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">支払内容</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">支払金額</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">レシート</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">状態</th>
+        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">編集</th> <!-- 編集を右側に移動 -->
       </tr>
     </thead>
     <tbody>
       <% @payments.each do |payment| %>
         <tr>
-          <td class="border px-4 py-2"><%= payment.recipient&.user_name || 'なし' %></td>
-          <td class="border px-4 py-2"><%= payment.date&.strftime("%-m / %-d") || '未設定' %></td>
-          <td class="border px-4 py-2"><%= payment.content %></td>
-          <td class="border px-4 py-2"><%= payment.amount %>円</td>
-          <td class="border px-4 py-2">
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= payment.recipient&.user_name || 'なし' %></td>
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= payment.date&.strftime("%-m / %-d") || '未設定' %></td>
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= payment.content %></td>
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= payment.amount %>円</td>
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">
             <% if payment.receipt_image.attached? %>
               <%= link_to 'レシート画像', url_for(payment.receipt_image), target: '_blank' %> 
             <% else %>
               <span>なし</span>
             <% end %>
           </td>
-          <td class="border px-4 py-2"><%= payment.status %></td>
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= payment.status %></td>
           <!-- 編集ボタンを右側に移動 -->
-          <td class="border px-4 py-2 text-center">
+          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-center text-sm sm:text-xs">
             <%= link_to '編集', edit_room_payment_path(@room, payment), class: 'text-blue-500 hover:text-blue-700' %>
           </td>
         </tr>

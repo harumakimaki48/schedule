@@ -1,0 +1,16 @@
+<div class="hamburger-menu">
+  <button id="hamburgerButton" class="text-gray-600 focus:outline-none">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div id="menuContent" class="hidden">
+    <ul>
+      <li><%= link_to 'ログインへ', login_path, data: { turbo: false } %></li>
+      <li><%= link_to '日程変更', select_date_room_schedules_path, data: { turbo: false } %></li>
+      <li><%= link_to '精算表', room_payments_path, data: { turbo: false } %></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  console.log("Hamburger menu HTML loaded"); // デバッグ用ログ
+</script>
