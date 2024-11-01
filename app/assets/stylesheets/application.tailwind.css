@@ -16,8 +16,22 @@
     overflow: hidden;
     display: none; /* 初期状態は非表示 */
     z-index: 10; /* 他の要素の上に表示 */
+    min-width: 150px; 
+    padding: 8px 0;
 }
 
 #menuContent.show {
     display: block; /* メニュー表示時 */
+}
+
+#menuContent ul li {
+    padding: 8px 0; /* リストアイテムの上下余白 */
+    text-align: center; /* 中央揃え */
+    font-weight: bold; /* フォントを少し太く（任意） */
+}
+
+#menuContent ul li a {
+    display: block; /* リンクをブロック表示にして中央揃え */
+    color: #333; /* リンクの色（任意） */
+    text-decoration: none; /* リンクの下線を削除 */
 }
