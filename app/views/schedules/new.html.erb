@@ -1,9 +1,9 @@
 <!-- 外枠 -->
-<div class="max-w-screen-md mx-auto bg-gray-100 p-6  rounded-lg">
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
 
   <!-- ヘッダー部分：日付を中央に表示し、ハンバーガーメニューも追加 -->
-  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
-    <h1 class="text-lg font-bold mx-auto">
+  <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
+    <h1 class="text-lg sm:text-base font-bold mx-auto">
       <% if @selected_date.present? %>
         <%= @selected_date.strftime('%m/%d (%a)') %> <!-- 日付が選択されていれば表示 -->
       <% else %>
@@ -20,36 +20,38 @@
 
   <!-- フォーム部分 -->
   <div class="mt-4">
-    <%= form_with model: [@room, @schedule], local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
-        <!-- 固定時間（ピンアイコン付き） -->
+    <%= form_with model: [@room, @schedule], local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 sm:px-4 sm:pt-4 sm:pb-4" do |f| %>
+      <!-- 固定時間（ピンアイコン付き） -->
       <div class="mb-4 flex items-center">
-        <%= f.label :fix, '固定', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.label :fix, '固定', class: "block text-gray-700 text-sm sm:text-xs font-bold mb-2 sm:mb-1" %>
         <%= f.check_box :fix, class: "mr-2" %>
         <!-- 押しピンアイコン -->
         <i class="fa-solid fa-thumbtack text-gray-700"></i>
       </div>
 
-      <!-- 時間選択 -->      
-<div class="mb-4">             
-  <label class="block text-gray-700 text-sm font-bold mb-2">TIME</label>
-  <div class="flex items-center">
-    <!-- 開始時間 -->
-    <%= f.time_field :time_start, value: "09:00", class: "shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2" %>
-    <!-- 区切り -->
-    <span class="text-gray-700 text-sm">〜</span>
-    <!-- 終了時間 -->
-    <%= f.time_field :time_end, value: "10:00", class: "shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-2" %>
-  </div>
-</div>
-
+      <!-- 時間選択 -->
       <div class="mb-4">
-        <%= f.label :content, 'Content', class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.text_field :content, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "内容を入力" %>
+        <label class="block text-gray-700 text-sm sm:text-xs font-bold mb-2 sm:mb-1">TIME</label>
+        <div class="flex items-center">
+          <!-- 開始時間 -->
+          <%= f.time_field :time_start, value: "09:00", class: "shadow appearance-none border rounded w-1/3 py-2 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2" %>
+          <!-- 区切り -->
+          <span class="text-gray-700 text-sm sm:text-xs">〜</span>
+          <!-- 終了時間 -->
+          <%= f.time_field :time_end, value: "10:00", class: "shadow appearance-none border rounded w-1/3 py-2 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ml-2" %>
+        </div>
       </div>
 
+      <!-- 内容の入力 -->
+      <div class="mb-4">
+        <%= f.label :content, 'Content', class: "block text-gray-700 text-sm sm:text-xs font-bold mb-2 sm:mb-1" %>
+        <%= f.text_field :content, class: "shadow appearance-none border rounded w-full py-2 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "内容を入力" %>
+      </div>
+
+      <!-- 追加ボタン -->
       <div class="flex justify-end mt-4">
-        <%= f.submit '追加', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-      </div>  
+        <%= f.submit '追加', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 sm:px-2 sm:py-1 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
     <% end %>
   </div>
 </div>

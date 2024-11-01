@@ -1,13 +1,31 @@
-<div class="flex justify-center items-center h-screen">
-  <div class="w-full max-w-xs">
-    <%= form_with url: choose_date_room_schedules_path(@room), local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
-      <div class="mb-4">
-      <h1 class="text-center text-2xl mb-4">日程選択</h1>
-        <%= f.select :date, options_for_select(@available_dates.map { |date| [date.strftime("%m/%d (%a)"), date] }), class: "form-select" %>
-      </div>
-      <div class="flex items-center justify-between">
-        <%= f.submit '日程を選択', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-      </div>
-    <% end %>
+<!-- 外枠 -->
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
+
+  <!-- ヘッダー部分：日付を選択 -->
+  <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
+    <h1 class="text-lg sm:text-base font-bold mx-auto">SCHEDULE</h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <%= render 'shared/hamburger_menu' %>
+    </div>
+  </div>
+
+  <!-- フォーム部分 -->
+  <div class="flex justify-center items-center mt-8"> <!-- mt-8でヘッダーとの隙間を追加 -->
+    <div class="w-full max-w-xs">
+      <%= form_with url: choose_date_room_schedules_path(@room), local: true, class: "bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+        <h2 class="text-center text-2xl mb-4">日程選択</h2>
+        
+        <!-- 日付選択ドロップダウン -->
+        <div class="flex justify-center mb-4"> <!-- flexで中央揃え & mb-4で下部に隙間を追加 -->
+          <%= f.select :date, options_for_select(@available_dates.map { |date| [date.strftime("%m/%d (%a)"), date] }), class: "form-select" %>
+        </div>
+        
+        <!-- SELECTボタン -->
+        <div class="flex justify-center">
+          <%= f.submit 'SELECT', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,15 +1,27 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
+import "@hotwired/turbo-rails";
+import "./controllers";
+
+// ハンバーガーメニューの表示/非表示を切り替える処理
+document.addEventListener('DOMContentLoaded', function () {
+    const button = document.getElementById('hamburgerButton');
+    const menu = document.getElementById('menuContent');
+
+    if (button && menu) {
+        button.addEventListener('click', () => {
+            menu.classList.toggle('show'); // 'show' クラスのトグルに変更
+        });
+    } else {
+        console.log('Button or menu element not found');
+    }
 
 
-// Parkを選択したときにAreaを更新する処理
-document.addEventListener('turbo:load', function () {
+    // Parkを選択したときにAreaを更新する処理
     const parkSelect = document.getElementById('park-select');
     const areaSelect = document.getElementById('area-select');
     const landBtn = document.getElementById('land-btn');
     const seaBtn = document.getElementById('sea-btn');
-    const shopSelects = document.querySelectorAll('[id^="shop-select"]'); // IDが'shop-select'で始まる全ての要素を取得
+    const shopSelects = document.querySelectorAll('[id^="shop-select"]');
 
     // Parkセレクトボックスが存在する場合に動作
     if (parkSelect) {

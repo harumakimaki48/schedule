@@ -1,7 +1,7 @@
-<div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
   <!-- ヘッダー部分：精算登録とハンバーガーメニュー -->
-  <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
-    <h1 class="text-lg font-bold mx-auto">
+  <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
+    <h1 class="text-lg sm:text-base font-bold mx-auto">
       精算登録
     </h1>
     <!-- ハンバーガーメニュー -->
@@ -12,42 +12,42 @@
     </div>
   </div>
 
-  <div class="max-w-screen-md mx-auto bg-gray-100 p-6 rounded-lg">
-    <%= form_with model: [@room, @payment], method: :patch, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+  <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
+    <%= form_with model: [@room, @payment], method: :patch, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 sm:px-4 sm:pt-4 sm:pb-4 mb-4" do |f| %>
 
       <!-- 支払先 -->
       <div class="mb-4">
-        <%= f.label :recipient_id, '支払先', class: 'block text-gray-700 text-sm font-bold mb-2' %>
-        <%= f.collection_select :recipient_id, @users, :id, :user_name, { include_blank: true }, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        <%= f.label :recipient_id, '支払先', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= f.collection_select :recipient_id, @users, :id, :user_name, { include_blank: true }, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
       <!-- 日付 -->
       <div class="mb-4">
-  <%= f.label :payment_date, '日付', class: 'block text-gray-700 text-sm font-bold mb-2' %>
-  <%= f.select :payment_date, options_for_select(@dates), {}, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-</div>
+        <%= f.label :payment_date, '日付', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= f.select :payment_date, options_for_select(@dates), {}, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
 
       <!-- 支払内容 -->
       <div class="mb-4">
-        <%= f.label :content, '支払内容', class: 'block text-gray-700 text-sm font-bold mb-2' %>
-        <%= f.text_field :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        <%= f.label :content, '支払内容', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= f.text_field :content, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
       <!-- 支払金額 -->
-        <div class="mb-4">
-        <%= f.label :amount, '支払金額', class: 'block text-gray-700 text-sm font-bold mb-2' %>
-        <%= f.number_field :amount, id: 'payment_amount', class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-        </div>
+      <div class="mb-4">
+        <%= f.label :amount, '支払金額', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= f.number_field :amount, id: 'payment_amount', class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
 
       <!-- レシート画像 -->
       <div class="mb-4">
-        <%= f.label :receipt_image, 'レシート画像', class: 'block text-gray-700 text-sm font-bold mb-2' %>
-        <%= f.file_field :receipt_image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        <%= f.label :receipt_image, 'レシート画像', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= f.file_field :receipt_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
       <!-- 追加ボタン -->
       <div class="flex justify-end">
-        <%= f.submit '追加', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+        <%= f.submit '追加', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>
       </div>
     <% end %>
   </div>
@@ -56,13 +56,10 @@
 <% if @payment.errors.any? %>
   <div class="text-red-500">
     <h2>入力エラーが発生しました:</h2>
-    <ul>
+    <ul class="text-sm sm:text-xs">
       <% @payment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
-
-
-
