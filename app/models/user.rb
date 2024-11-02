@@ -2,7 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   # 中間テーブルとの関係性
-  has_many :users_rooms
+  has_many :users_rooms, dependent: :destroy
   has_many :rooms, through: :users_rooms
 
   has_many :payments  # 支払元としての支払い

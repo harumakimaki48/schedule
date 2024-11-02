@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails";
 import "./controllers";
 
 // ハンバーガーメニューの表示/非表示を切り替える処理
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('turbo:load', function () {
     const button = document.getElementById('hamburgerButton');
     const menu = document.getElementById('menuContent');
 
