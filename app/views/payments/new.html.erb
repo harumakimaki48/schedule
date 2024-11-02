@@ -13,7 +13,8 @@
   </div>
 
   <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
-    <%= form_with model: [@room, @payment], method: :patch, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 sm:px-4 sm:pt-4 sm:pb-4 mb-4" do |f| %>
+  <%= form_with(model: [@room, @payment], local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 sm:px-4 sm:pt-4 sm:pb-4 mb-4") do |f| %>
+
 
       <!-- 支払先 -->
       <div class="mb-4">
@@ -23,8 +24,8 @@
 
       <!-- 日付 -->
       <div class="mb-4">
-        <%= f.label :payment_date, '日付', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
-        <%= f.select :payment_date, options_for_select(@dates), {}, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      <%= f.label :date, '日付', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+      <%= f.select :date, options_for_select(@dates), {}, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>      
       </div>
 
       <!-- 支払内容 -->
