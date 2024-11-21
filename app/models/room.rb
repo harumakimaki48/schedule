@@ -5,6 +5,7 @@ class Room < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :outfits, dependent: :destroy
 
   has_secure_password
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_02_091358) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_18_151947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_091358) do
     t.datetime "updated_at", null: false
     t.index ["food_id"], name: "index_foods_shops_on_food_id"
     t.index ["shop_id"], name: "index_foods_shops_on_shop_id"
+  end
+
+  create_table "outfits", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_outfits_on_room_id"
+    t.index ["user_id"], name: "index_outfits_on_user_id"
   end
 
   create_table "parks", force: :cascade do |t|
@@ -157,6 +167,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_091358) do
   add_foreign_key "foods", "rooms"
   add_foreign_key "foods_shops", "foods"
   add_foreign_key "foods_shops", "shops"
+  add_foreign_key "outfits", "rooms"
+  add_foreign_key "outfits", "users"
   add_foreign_key "payments", "rooms"
   add_foreign_key "payments", "schedules"
   add_foreign_key "payments", "users"

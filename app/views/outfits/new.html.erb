@@ -1,0 +1,65 @@
+<div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
+  <!-- ヘッダー部分：服装セット登録とハンバーガーメニュー -->
+  <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
+    <h1 class="text-lg sm:text-base font-bold mx-auto">
+      服装セット登録
+    </h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <button class="text-gray-600 focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
+    <%= form_with model: [@room, @outfit], local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 sm:px-4 sm:pt-4 sm:pb-4 mb-4" do |form| %>
+      
+      <!-- セット名 -->
+      <div class="mb-4">
+        <%= form.label :name, 'セット名', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= form.text_field :name, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- カチューシャ -->
+      <div class="mb-4">
+        <%= form.label :headband_image, 'カチューシャ', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= form.file_field :headband_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 服 -->
+      <div class="mb-4">
+        <%= form.label :clothing_image, '服', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= form.file_field :clothing_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- バッグ -->
+      <div class="mb-4">
+        <%= form.label :bag_image, 'バッグ', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= form.file_field :bag_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 靴 -->
+      <div class="mb-4">
+        <%= form.label :shoes_image, '靴', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+        <%= form.file_field :shoes_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <!-- 登録ボタン -->
+      <div class="flex justify-end">
+        <%= form.submit '登録', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @outfit.errors.any? %>
+  <div class="text-red-500">
+    <h2>入力エラーが発生しました:</h2>
+    <ul class="text-sm sm:text-xs">
+      <% @outfit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
