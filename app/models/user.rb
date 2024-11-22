@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # 中間テーブルとの関係性
   has_many :users_rooms, dependent: :destroy
   has_many :rooms, through: :users_rooms
+  has_many :outfits, dependent: :destroy
 
   has_many :payments  # 支払元としての支払い
   has_many :received_payments, class_name: "Payment", foreign_key: "recipient_id"  # 支払先としての支払い

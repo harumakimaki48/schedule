@@ -1,0 +1,66 @@
+<div style="max-width: 768px; margin: 0 auto; background-color: #f7fafc; padding: 24px; border-radius: 8px;">
+  <!-- ヘッダー部分 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background-color: #edf2f7;">
+    <h1 style="font-size: 1.125rem; font-weight: bold; margin: 0 auto;">服装セット一覧</h1>
+    <!-- ハンバーガーメニュー -->
+    <div>
+      <%= render 'shared/hamburger_menu' %>
+    </div>
+  </div>
+
+  <!-- 新規追加ボタン -->
+  <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+    <%= link_to '新規作成', new_room_outfit_path(@room), style: 'background-color: #48bb78; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 0.875rem;' %>
+  </div>
+
+  <!-- 服装セット表示 -->
+  <div style="margin-top: 16px;">
+    <% @outfits.order(:user_id).each do |outfit| %>
+      <div style="background-color: white; padding: 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 16px;">
+        <!-- セット名とボタン -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h2 style="font-size: 1.125rem; font-weight: bold; margin: 0;"><%= outfit.name %></h2>
+          <!-- ボタンを表示 -->
+          <div style="display: flex; gap: 8px;">
+            <%= link_to '編集', edit_room_outfit_path(@room, outfit), style: 'background-color: #4299e1; color: white; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 0.875rem;' %>
+          </div>
+        </div>
+
+        <!-- 登録者 -->
+        <p style="color: #4a5568; font-size: 0.875rem; margin-bottom: 16px;">登録者: <%= outfit.user.user_name %></p>
+
+        <!-- 服装詳細 (4分割配置) -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <!-- カチューシャ -->
+          <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">カチューシャ:</p>
+            <% if outfit.headband_image.attached? %>
+              <%= image_tag outfit.headband_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
+            <% end %>
+          </div>
+          <!-- バッグ -->
+          <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">バッグ:</p>
+            <% if outfit.bag_image.attached? %>
+              <%= image_tag outfit.bag_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
+            <% end %>
+          </div>
+          <!-- 服 -->
+          <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">服:</p>
+            <% if outfit.clothing_image.attached? %>
+              <%= image_tag outfit.clothing_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
+            <% end %>
+          </div>
+          <!-- 靴 -->
+          <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">靴:</p>
+            <% if outfit.shoes_image.attached? %>
+              <%= image_tag outfit.shoes_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
