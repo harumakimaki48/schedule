@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "夢のメモ書き" %></title>
+    <!-- ページタイトル -->
+    <title>夢のメモ書き</title>
+
+    <!-- メタ情報 -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <!-- OGPメタタグ -->
+    <meta property="og:title" content="ディズニーを計画的に回りたい人へ！" />
+    <meta property="og:description" content="ディズニーを隅々まで楽しみたい人へのプランニングwebアプリです" />
+    <meta property="og:image" content="<%= asset_path('OGP_image.png') %>" />
+    <meta property="og:url" content="https://schedule-g574.onrender.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="夢のメモ書き" />
+    <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- リンクタグ -->
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+
+    <!-- スタイルシートとJavaScript -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
@@ -22,4 +35,3 @@
     <%= yield %>
   </body>
 </html>
-
