@@ -17,5 +17,9 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password] }
 
   # Enumでのrole管理
-  enum role: { user: 0, admin: 1 }
+  enum :role, [ :user, :admin ]
+
+  # LINE認証ユーザーのスコープ
+  validates :uid, uniqueness: { scope: :provider }, allow_nil: true
+  validates :provider, presence: true, if: -> { uid.present? }
 end
