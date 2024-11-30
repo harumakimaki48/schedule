@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_18_151947) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_30_063549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,9 +147,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_151947) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_number", null: false
+    t.string "user_number", default: "default_number", null: false
     t.string "user_name", null: false
     t.integer "role", default: 0, null: false
+    t.string "uid"
+    t.string "provider"
   end
 
   create_table "users_rooms", force: :cascade do |t|

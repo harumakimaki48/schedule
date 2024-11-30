@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  # line_login
+  get "/auth/line/callback", to: "sessions#line_callback", as: :line_callback
+
   # rooms_controllers の login ルートをトップレベルに定義
   get "/rooms/login", to: "rooms#login", as: "login_room"
   post "/rooms/login", to: "rooms#login_process", as: "login_room_process"
