@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password] }
 
   # Enum管理
-  enum :role, [:user, :admin]
+  enum :role, [ :user, :admin ]
 
   # トークン管理
   def generate_remember_token
