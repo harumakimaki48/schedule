@@ -24,7 +24,7 @@ class ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     if @shop.save
-      redirect_to shops_path, notice: "Shop was successfully created."
+      redirect_to shops_path, notice: "店舗登録完了"
     else
       render :new
     end
@@ -35,7 +35,7 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      redirect_to shops_path, notice: "Shop was successfully updated."
+      redirect_to shops_path, notice: "店舗情報を更新"
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class ShopsController < ApplicationController
 
   def destroy
     @shop.destroy
-    redirect_to shops_path, notice: "Shop was successfully deleted."
+    redirect_to shops_path, notice: "店舗情報を削除"
   end
 
   private

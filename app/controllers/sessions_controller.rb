@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
       # トークン生成と保存
       @user.generate_remember_token
       cookies.permanent.signed[:remember_token] = @user.remember_token
-
-      redirect_to login_room_path, notice: "ログインに成功しました。"
+      flash[:notice] = "ログインに成功しました"
+      redirect_to login_room_path
     else
-      flash.now[:alert] = "ログインに失敗しました。"
-      redirect_to login_path
+      flash[:alert] = "ログインに失敗しました"
+    redirect_to login_path
     end
   end
 
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     cookies.delete(:remember_token)
 
     logout
-    redirect_to root_path, notice: "ログアウトしました。"
+    redirect_to root_path, notice: "ログアウトしました"
   end
 
   def line_callback
@@ -46,15 +46,15 @@ class SessionsController < ApplicationController
       user.generate_remember_token
       cookies.permanent.signed[:remember_token] = user.remember_token
 
-      redirect_to login_room_path, notice: "LINEログインに成功しました。"
+      redirect_to login_room_path, notice: "LINEログインに成功しました"
     else
       Rails.logger.error "ユーザー保存エラー: #{user.errors.full_messages.join(', ')}"
-      redirect_to login_path, alert: "LINEログインに失敗しました。"
+      redirect_to login_path, alert: "LINEログインに失敗しました"
     end
   end
 
   def failure
     Rails.logger.error "OmniAuth Failure: #{params[:message]}"
-    redirect_to login_path, alert: "ログインに失敗しました。#{params[:message]}"
+    redirect_to login_path, alert: "ログインに失敗しました#{params[:message]}"
   end
 end

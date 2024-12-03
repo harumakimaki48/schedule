@@ -1,7 +1,7 @@
 <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
   <!-- ヘッダー部分：ユーザー一覧とハンバーガーメニュー -->
   <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
-    <h1 class="text-lg sm:text-base font-bold mx-auto">Room_User</h1>
+    <h1 class="text-lg sm:text-base font-bold mx-auto">部屋のメンバー</h1>
     <!-- ハンバーガーメニュー -->
     <div>
       <%= render 'shared/hamburger_menu' %> 
@@ -12,7 +12,6 @@
   <table class="min-w-full bg-white border-collapse mt-4">
     <thead>
       <tr>
-        <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">ユーザー番号</th>
         <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">ユーザー名</th>
         <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">削除</th>
       </tr>
@@ -20,7 +19,6 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= user.user_number %></td>
           <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= user.user_name %></td>
           <td class="border px-4 py-2 sm:px-2 sm:py-1 text-center text-sm sm:text-xs">
 <%= button_to '削除', room_users_room_path(@room, user), method: :delete, data: { turbo_method: :delete, confirm: "#{user.user_name} を削除しますか？" }, class: 'bg-red-600 hover:bg-red-800 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline text-sm sm:text-xs' %>

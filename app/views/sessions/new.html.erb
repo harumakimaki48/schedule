@@ -5,16 +5,16 @@
       <h1 class="text-center text-2xl mb-4">ログイン</h1>
 
       <div class="mb-4">
-        <%= f.label :user_number, 'ID入力', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.label :user_number, 'ID', class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= f.text_field :user_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "IDを入力" %>
       </div>
 
       <div class="mb-6">
-        <%= f.label :password, 'パスワード入力', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.label :password, 'パスワード', class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "パスワードを入力" %>
       </div>
 
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-center">
         <%= f.submit 'ログイン', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
 
@@ -22,11 +22,11 @@
   <%= link_to 'LINEでログイン', '/auth/line', class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded", data: { turbo: false } %>
 </div>
 
-    <% end %>
-
-    <div class="text-center mt-4">
+<div class="text-center mt-4">
       <%= link_to 'アカウント作成', new_user_path, class: "text-blue-500 hover:text-blue-700 font-bold" %>
     </div>
+
+    <% end %>
   </div>
 </div>
 
