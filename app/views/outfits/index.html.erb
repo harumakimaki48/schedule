@@ -17,7 +17,7 @@
   <div style="margin-top: 16px;">
     <% @outfits.order(:user_id).each do |outfit| %>
       <div style="background-color: white; padding: 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 16px;">
-        <!-- セット名とボタン -->
+        <!-- セット名 -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
           <h2 style="font-size: 1.125rem; font-weight: bold; margin: 0;"><%= outfit.name %></h2>
           <!-- ボタンを表示 -->
@@ -27,34 +27,34 @@
         </div>
 
         <!-- 登録者 -->
-        <p style="color: #4a5568; font-size: 0.875rem; margin-bottom: 16px;">登録者: <%= outfit.user.user_name %></p>
+        <p style="color: #4a5568; font-size: 1.125rem; font-weight: bold; margin-bottom: 16px;"><%= outfit.user.user_name %>が登録</p>
 
         <!-- 服装詳細 (4分割配置) -->
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
           <!-- カチューシャ -->
           <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
-            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">カチューシャ:</p>
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">カチューシャ</p>
             <% if outfit.headband_image.attached? %>
               <%= image_tag outfit.headband_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
             <% end %>
           </div>
           <!-- バッグ -->
           <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
-            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">バッグ:</p>
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">バッグ</p>
             <% if outfit.bag_image.attached? %>
               <%= image_tag outfit.bag_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
             <% end %>
           </div>
           <!-- 服 -->
           <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
-            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">服:</p>
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">服</p>
             <% if outfit.clothing_image.attached? %>
               <%= image_tag outfit.clothing_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
             <% end %>
           </div>
           <!-- 靴 -->
           <div style="flex: 1 1 calc(50% - 10px); box-sizing: border-box; text-align: center; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
-            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">靴:</p>
+            <p style="color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 8px;">靴</p>
             <% if outfit.shoes_image.attached? %>
               <%= image_tag outfit.shoes_image, style: 'width: 100%; height: auto; max-height: 150px; object-fit: contain;' %>
             <% end %>

@@ -4,13 +4,14 @@ class PaymentsController < ApplicationController
 
   def index
     if params[:user_id].present?
-      @payments = @room.payments.where(recipient_id: params[:user_id])
+      @payments = @room.payments.where(user_id: current_user.id, recipient_id: params[:user_id])
                                 .includes(:user, :recipient, :schedule)
                                 .order(:date)
       @total_amount = @payments.sum(:amount)
       @filtered_user_name = User.find(params[:user_id]).user_name
     else
-      @payments = @room.payments.includes(:user, :recipient, :schedule)
+      @payments = @room.payments.where(user_id: current_user.id) # ログインユーザーが登録した支払いのみ取得
+                                .includes(:user, :recipient, :schedule)
                                 .order(:date)
       @total_amount = nil
       @filtered_user_name = nil
@@ -19,6 +20,7 @@ class PaymentsController < ApplicationController
     @unsettled_payments = @payments.where(status: "未精算")
     @users = @room.users.where.not(id: current_user.id) # current_userを除外
   end
+
 
   def new
     @payment = @room.payments.build
@@ -31,7 +33,7 @@ class PaymentsController < ApplicationController
     if current_user
       @payment.user_id = current_user.id
     else
-      redirect_to login_path, alert: "ログインが必要です。" and return
+      redirect_to login_path, alert: "ログインが必要です" and return
     end
 
     Rails.logger.debug "Payment Params: #{payment_params.inspect}"
@@ -39,7 +41,7 @@ class PaymentsController < ApplicationController
 
     begin
       if @payment.save!
-        redirect_to room_payments_path(@room), notice: "支払が追加されました。"
+        redirect_to room_payments_path(@room), notice: "支払が追加されました"
       else
         set_form_data
         render :new
@@ -57,7 +59,7 @@ class PaymentsController < ApplicationController
 
   def update
     if @payment.update(payment_params)
-      redirect_to room_payments_path(@room), notice: "支払が更新されました。"
+      redirect_to room_payments_path(@room), notice: "支払が更新されました"
     else
       set_form_data
       render :edit
@@ -66,7 +68,7 @@ class PaymentsController < ApplicationController
 
   def destroy
     @payment.destroy
-    redirect_to room_payments_path(@room), notice: "支払が削除されました。"
+    redirect_to room_payments_path(@room), notice: "支払が削除されました"
   end
 
   private

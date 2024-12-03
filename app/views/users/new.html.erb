@@ -24,14 +24,15 @@
         <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "パスワードを再入力" %>
       </div>
 
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-center">
         <%= form.submit '登録', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
 
-    <% end %>
-
-    <div class="text-center mt-4">
+      <div class="text-center mt-4">
       <%= link_to 'ログインはこちら', login_path, class: "text-blue-500 hover:text-blue-700 font-bold" %>
     </div>
+    <% end %>
+
+    
   </div>
 </div>

@@ -14,7 +14,7 @@ class SchedulesController < ApplicationController
       @selected_date = Date.parse(params[:date])
       redirect_to room_schedules_path(@room, date: @selected_date) and return
     else
-      flash[:alert] = "日付を選択してください。"
+      flash[:alert] = "日付を選択してください"
       redirect_to select_date_room_schedules_path(@room)
     end
   end
@@ -24,7 +24,7 @@ class SchedulesController < ApplicationController
     if @selected_date
       @schedules = @room.schedules.where(selected_date: @selected_date).order(:time_start)
     else
-      flash[:alert] = "日付が選択されていません。"
+      flash[:alert] = "日付が選択されていません"
       redirect_to select_date_room_schedules_path(@room)
     end
   end
@@ -44,7 +44,7 @@ class SchedulesController < ApplicationController
     Rails.logger.debug "Selected Date on Create: #{@schedule.selected_date}"
 
     if @schedule.save
-      redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが追加されました。"
+      redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが追加されました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class SchedulesController < ApplicationController
 
   def update
     if @schedule.update(schedule_params)
-      redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが更新されました。"
+      redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが更新されました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -60,7 +60,7 @@ class SchedulesController < ApplicationController
 
   def destroy
     @schedule.destroy
-    redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが削除されました。"
+    redirect_to room_schedules_path(@room, date: @schedule.selected_date), notice: "スケジュールが削除されました"
   end
 
   private
@@ -78,7 +78,7 @@ class SchedulesController < ApplicationController
     if params[:date].present?
       @selected_date = Date.parse(params[:date])
     else
-      flash[:alert] = "日付が選択されていません。"
+      flash[:alert] = "日付が選択されていません"
       redirect_to select_date_room_schedules_path(@room)
     end
   end

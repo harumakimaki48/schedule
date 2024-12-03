@@ -35,3 +35,21 @@
     color: #333; /* リンクの色（任意） */
     text-decoration: none; /* リンクの下線を削除 */
 }
+
+.notice {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+
+  

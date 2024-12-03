@@ -22,7 +22,7 @@ class OutfitsController < ApplicationController
     @outfit.user = current_user
 
     if @outfit.save
-      redirect_to room_outfits_path(@room), notice: "服装セットを登録しました。"
+      redirect_to room_outfits_path(@room), notice: "登録しました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class OutfitsController < ApplicationController
 
   def update
     if @outfit.update(outfit_params)
-      redirect_to room_outfits_path(@room), notice: "服装セットを更新しました。"
+      redirect_to room_outfits_path(@room), notice: "更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class OutfitsController < ApplicationController
 
   def destroy
     @outfit.destroy
-    redirect_to room_outfits_path(@room), notice: "服装セットを削除しました。"
+    redirect_to room_outfits_path(@room), notice: "削除しました"
   end
 
   private
