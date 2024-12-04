@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  room_number: MyString
-  password_digest: MyString
+  room_number: UniqueRoom1
+  password_digest: test_password_1
   date_start: 2024-10-21
   date_end: 2024-10-21
   user: one
 
 two:
-  room_number: MyString
-  password_digest: MyString
+  room_number: UniqueRoom2
+  password_digest: test_password_2
   date_start: 2024-10-21
   date_end: 2024-10-21
   user: two

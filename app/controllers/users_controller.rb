@@ -20,10 +20,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    if current_user&.admin?  # current_userが存在し、かつ管理者であればroleを許可
-      params.require(:user).permit(:user_number, :user_name, :password, :password_confirmation, :role)
-    else
-      params.require(:user).permit(:user_number, :user_name, :password, :password_confirmation)
-    end
+    permitted_params = [ :user_number, :user_name, :password, :password_confirmation ]
+    permitted_params << :role if current_user&.admin?
+
+    params.require(:user).permit(*permitted_params)
   end
 end
