@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    sequence(:user_number) { |n| "12345#{n}" } # 一意なuser_numberを生成
+    sequence(:user_number) { |n| "user_#{n}" }
     user_name { "Test User" }
     password { "password" }
     password_confirmation { "password" }
