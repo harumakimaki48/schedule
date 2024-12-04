@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+area_one:
   area_name: MyString
+  park_id: 1
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-two:
-  area_name: MyString
+area_two:
+  area_name: MyOtherString
+  park_id: 2
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

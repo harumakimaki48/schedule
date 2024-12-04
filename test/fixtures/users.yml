@@ -7,11 +7,11 @@
 one:
   user_number: "123456"
   user_name: "Test User One"
-  password_digest: <%= User.digest('password') %>
+  crypted_password: <%= "sample_encrypted_password" %>
   role: "user"
 
 two:
   user_number: "654321"
   user_name: "Test User Two"
-  password_digest: <%= User.digest('password') %>
+  crypted_password: <%= "another_encrypted_password" %>
   role: "admin"

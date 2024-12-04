@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       auto_login(user) if user
     end
   end
+
+  def require_login
+    unless logged_in? # `logged_in?` メソッドは Sorcery または独自の認証で提供
+      flash[:alert] = "ログインが必要です"
+      redirect_to login_path
+    end
+  end
 end

@@ -3,7 +3,7 @@
   <!-- ヘッダー部分：日付を中央に表示し、ハンバーガーメニューも追加 -->
   <div class="flex justify-between items-center px-4 py-2 bg-gray-200">
     <h1 class="text-lg sm:text-base font-bold mx-auto">
-      <%= @selected_date.present? ? @selected_date.strftime('%m/%d (%a)') : "日付が選択されていません" %>
+      <%= @selected_date.present? ? @selected_date.strftime('%m/%d (%a)の日程表') : "日付が選択されていません" %>
     </h1>
     <!-- ハンバーガーメニュー -->
     <div>
@@ -13,7 +13,7 @@
 
   <!-- スケジュール追加ボタン -->
   <div class="flex justify-end mt-4">
-    <%= link_to '追加', new_room_schedule_path(@room, date: @selected_date), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 sm:px-2 sm:py-1 rounded" %>
+    <%= link_to '予定を追加', new_room_schedule_path(@room, date: @selected_date), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 sm:px-2 sm:py-1 rounded" %>
   </div>
 
   <!-- スケジュール一覧 -->
@@ -24,8 +24,8 @@
       <th class="border px-2 py-1 text-center w-8">
         <i class="fa-solid fa-thumbtack"></i>
       </th>
-      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">TIME</th>
-      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">CONTENT</th>
+      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">時間</th>
+      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">内容</th>
     </tr>
   </thead>
       <tbody>

@@ -21,8 +21,10 @@
         <tr>
           <td class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs"><%= user.user_name %></td>
           <td class="border px-4 py-2 sm:px-2 sm:py-1 text-center text-sm sm:text-xs">
-<%= button_to '削除', room_users_room_path(@room, user), method: :delete, data: { turbo_method: :delete, confirm: "#{user.user_name} を削除しますか？" }, class: 'bg-red-600 hover:bg-red-800 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline text-sm sm:text-xs' %>
-          </td>
+          <%= button_to '削除', room_users_room_path(@room, user), method: :delete, 
+          data: { turbo: false, confirm: "#{user.user_name} を削除しますか？" },
+          class: 'bg-red-600 hover:bg-red-800 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline text-sm sm:text-xs' %> 
+              </td>
         </tr>
       <% end %>
     </tbody>

@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
     if auth.nil?
       Rails.logger.error "OmniAuth認証情報が見つかりません: #{request.env.inspect}"
-      redirect_to login_path, alert: "LINEログインに失敗しました。"
+      redirect_to login_path, alert: "LINEログインに失敗しました"
       return
     end
 

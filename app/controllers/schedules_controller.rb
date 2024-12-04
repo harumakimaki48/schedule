@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  before_action :require_login
   before_action :set_room
   before_action :set_schedule, only: [ :edit, :update, :destroy ]
   before_action :set_selected_date, only: [ :index, :new ]
