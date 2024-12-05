@@ -34,8 +34,10 @@ class SessionsController < ApplicationController
       return
     end
 
+    # LINEログイン時のユーザー作成・取得処理
     user = User.find_or_initialize_by(uid: auth[:uid], provider: "line") do |u|
       u.user_name = auth[:info][:name]
+      u.user_number ||= generate_unique_user_number # ユニークな user_number を設定
       u.role = :user
     end
 
@@ -53,8 +55,12 @@ class SessionsController < ApplicationController
     end
   end
 
-  def failure
-    Rails.logger.error "OmniAuth Failure: #{params[:message]}"
-    redirect_to login_path, alert: "ログインに失敗しました#{params[:message]}"
+  private
+
+  def generate_unique_user_number
+    loop do
+      unique_number = "line_#{SecureRandom.hex(5)}"
+      break unique_number unless User.exists?(user_number: unique_number)
+    end
   end
 end
