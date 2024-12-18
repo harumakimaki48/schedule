@@ -37,7 +37,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem "sorcery"
 
-gem "font-awesome-sass", "~> 6.5.2"
+gem "font-awesome-sass", "~> 6.7.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
