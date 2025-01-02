@@ -40,6 +40,12 @@ class RoomsController < ApplicationController
         end
       end
 
+      def share_link
+        @room = Room.find(params[:id])
+        # 招待用のURLを生成 (適宜URLを変更)
+        @invite_url = "#{root_url}rooms/login?room_number=#{@room.room_number}&password=#{@room.password}"
+        render json: { invite_url: @invite_url }
+      end
 
       private
 

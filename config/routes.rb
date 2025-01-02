@@ -33,6 +33,11 @@ Rails.application.routes.draw do
         post "choose_date", to: "schedules#choose_date", as: "choose_date"
       end
     end
+
+    # rooms_menber_sharelink
+    member do
+      get :share_link
+    end
   end
 
   # shop_controllers
