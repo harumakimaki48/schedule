@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
-    @user.user_number = nil
   end
 
   def create
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    permitted_params = [ :user_number, :user_name, :password, :password_confirmation ]
+    permitted_params = [ :email, :user_name, :password, :password_confirmation ]
     permitted_params << :role if current_user&.admin?
 
     params.require(:user).permit(*permitted_params)
