@@ -12,7 +12,6 @@ class RoomsController < ApplicationController
           @room.users << current_user
           redirect_to login_room_path, notice: "部屋が作成されました"
         else
-          # エラーが発生した場合は、Turboが期待する形式でエラーレスポンスを返す
           flash.now[:alert] = "部屋の作成に失敗しました"
           render :new, status: :unprocessable_entity
         end
@@ -35,8 +34,8 @@ class RoomsController < ApplicationController
 
             redirect_to select_date_room_schedules_path(@room), notice: "部屋に入りました"
         else
-          flash.now[:alert] = "部屋番号またはパスワードが間違っています"
-          render :login  # 修正: login_formではなくloginビューを再表示
+          flash[:alert] = "部屋番号またはパスワードが間違っています"
+          redirect_to login_room_path
         end
       end
 

@@ -13,8 +13,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
-    user.username_attribute_names = [ :user_number ]
-    user.email_attribute_name = nil
+    user.username_attribute_names = [ :email ]
     user.stretches = 1 if Rails.env.test?
   end
 
