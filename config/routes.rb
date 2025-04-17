@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     # outfits_controllers
     resources :outfits, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
+
+
     # schedules_controllers for each room
     resources :schedules do
       collection do
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
     # rooms_menber_sharelink
     member do
       get :share_link
+      get :how_to_use # ログイン後の使い方ページ
     end
   end
 
@@ -54,4 +57,7 @@ Rails.application.routes.draw do
   # Render dynamic PWA files
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+
+  # how_to_use_ログイン前
+   get 'how_to_use', to: 'pages#how_to_use_guest'
 end
