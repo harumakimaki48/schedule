@@ -18,16 +18,16 @@
 
   <!-- スケジュール一覧 -->
   <div class="schedule-list mt-4">
-  <table class="min-w-full bg-white border-collapse">
-  <thead>
-    <tr>
-      <th class="border px-2 py-1 text-center w-8">
-        <i class="fa-solid fa-thumbtack"></i>
-      </th>
-      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">時間</th>
-      <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">内容</th>
-    </tr>
-  </thead>
+    <table class="min-w-full bg-white border-collapse">
+      <thead>
+        <tr>
+          <th class="border px-2 py-1 text-center w-8">
+            <i class="fa-solid fa-thumbtack"></i>
+          </th>
+          <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">時間</th>
+          <th class="border px-4 py-2 sm:px-2 sm:py-1 text-sm sm:text-xs">内容</th>
+        </tr>
+      </thead>
       <tbody>
         <% if @schedules.present? %>
           <% @schedules.each do |schedule| %>
@@ -38,11 +38,13 @@
                   <i class="fa-solid fa-thumbtack"></i>
                 <% end %>
               </td>
-              <!-- 時間を表示 -->
+
+              <!-- ✅ 時間をリンクにして編集画面に飛ぶ -->
               <td class="border px-4 py-2 sm:px-2 text-center text-sm sm:text-xs">
-                <%= schedule.time_start.strftime('%H:%M') %> 〜 <%= schedule.time_end.strftime('%H:%M') %>
+                <%= link_to "#{schedule.time_start.strftime('%H:%M')} 〜 #{schedule.time_end.strftime('%H:%M')}", edit_room_schedule_path(@room, schedule), class: "text-blue-500 hover:text-blue-700 underline" %>
               </td>
-              <!-- Contentを表示。リンクとして編集画面に飛ぶ -->
+
+              <!-- 内容をリンクとして編集画面に飛ぶ -->
               <td class="border px-4 py-2 sm:px-2 text-center text-sm sm:text-xs">
                 <%= link_to schedule.content, edit_room_schedule_path(@room, schedule), class: "text-blue-500 hover:text-blue-700 underline" %>
               </td>

@@ -1,51 +1,180 @@
 <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
 
-  <!-- ヘッダー部分：使い方とハンバーガーメニュー -->
+  <!-- ヘッダー部分：使い方 -->
   <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
     <h1 class="text-lg sm:text-base font-bold mx-auto">
       アプリの使い方
     </h1>
   </div>
 
+  <!-- スマホ対応の目次リンク -->
+  <div class="bg-white shadow-md rounded p-4 mb-6 border border-gray-200">
+  <h2 class="text-md sm:text-base font-bold mb-3">目次</h2>
+  <ul class="space-y-1 text-base sm:text-sm font-semibold">
+    <li>
+      <%= link_to 'STEP 1：ログインまでの流れ', '#step1', class: "block py-1 text-blue-600 hover:underline" %>
+    </li>
+    <li>
+      <%= link_to 'STEP 2：ルーム作成・参加', '#step2', class: "block py-1 text-blue-600 hover:underline" %>
+    </li>
+    <li class="mt-2 text-gray-700 text-gray-700">STEP 3：各機能の説明</li>
+    <ul class="ml-4 space-y-1">
+      <li><%= link_to '・メニュー機能', '#menu', class: "block py-1 text-blue-600 hover:underline" %></li>
+      <li><%= link_to '・日程変更', '#schedule', class: "block py-1 text-blue-600 hover:underline" %></li>
+      <li><%= link_to '・精算表', '#payment', class: "block py-1 text-blue-600 hover:underline" %></li>
+      <li><%= link_to '・服装セット', '#outfit', class: "block py-1 text-blue-600 hover:underline" %></li>
+      <li><%= link_to '・メンバー一覧', '#members', class: "block py-1 text-blue-600 hover:underline" %></li>
+      <li><%= link_to '・補足情報', '#information', class: "block py-1 text-blue-600 hover:underline" %></li>
+    </ul>
+  </ul>
+</div>
+
   <!-- 本文 -->
   <div class="mt-4 space-y-6">
 
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎アカウント作成</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">メールアドレスとパスワード登録でアカウントを作成</p>
+    <!-- STEP 1: ログインまでの流れ -->
+    <div id="step1" class="bg-white shadow-md rounded p-4 mb-6">
+      <h2 class="text-md sm:text-sm font-bold mb-2">STEP 1｜アカウント作成とログイン</h2>
+      <p class="text-sm sm:text-xs text-gray-700 mb-1">・メールアドレスとパスワードを入力してアカウントを作成できます（登録は1回のみ）。</p>
+      <p class="text-sm sm:text-xs text-gray-700 mb-1">・LINEアカウントでもログイン可能です。</p>
+      <p class="text-sm sm:text-xs text-gray-700">※一部のブラウザではLINEログインが使用できない場合があります。</p>
+      <div class="mt-3 text-center">
+        <%= image_tag "howto/step1_login_1.png", alt: "アカウント作成画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+        <%= image_tag "howto/step1_login_2.png", alt: "アカウント作成画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+      </div>
     </div>
 
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎ログイン or LINEでログイン</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">メールアドレスとパスワード又は、LINEアカウントを使用しでログインできます</p>
+    <!-- STEP 2: ルーム作成・参加 -->
+    <div id="step2" class="bg-white shadow-md rounded p-4 mb-6">
+      <h2 class="text-md sm:text-sm font-bold mb-2">STEP 2｜ルームを作成・参加する</h2>
+      <p class="text-sm sm:text-xs text-gray-700 mb-1">旅行ごとに「ルーム」を作成して、スケジュールや情報を管理します。</p>
+      <div class="mt-3 text-center">
+        <%= image_tag "howto/step2_room_1.png", alt: "部屋作成画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+      </div>
+      <p class="text-sm sm:text-xs text-gray-700 mb-1">ルーム作成時には、日付・パスワードなどを設定します。</p>
+      <p class="text-sm sm:text-xs text-gray-700">他のユーザーは、部屋番号とパスワードを入力して参加できます。</p>
+      <div class="mt-3 text-center">
+        <%= image_tag "howto/step2_room_2.png", alt: "部屋作成画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+      </div>
     </div>
 
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎ルームを作成 or 参加</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">旅行ごとにルームを作成し、参加することでデータを共有できます</p>
+    <!-- メニューの選択について -->
+    <div id="menu" class="bg-white shadow-md rounded p-4 mb-6">
+      <h2 class="text-md sm:text-sm font-bold mb-2">メニューの選択について</h2>
+      <p class="text-sm sm:text-xs text-gray-700 mb-1">ハンバーガーメニューから各種機能にアクセスできます。</p>
+      <div class="mt-3 text-center">
+        <%= image_tag "howto/step0_menu_1.png", alt: "メニュー画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+      </div>
     </div>
 
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎スケジュールを登録</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">日付ごとに予定を登録でき、ショーやパレードのスケジュールも管理できます</p>
+    <!-- STEP 3: 各機能の説明 -->
+    <div class="bg-white shadow-md rounded p-4 mb-6">
+      <h2 class="text-md sm:text-sm font-bold mb-2">STEP 3｜主な機能</h2>
+      <div class="ml-2 space-y-4">
+
+        <div id="schedule">
+          <h3 class="text-sm sm:text-xs font-bold">⚫︎ 日程変更</h3>
+          <p class="text-sm sm:text-xs font-bold">日付ごとに予定を登録できます。ショーやパレードの時間も管理可能です。</p>
+          <p class="text-sm sm:text-xs text-gray-700">スケジュールを登録したい日付を選択してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_schedule_1.png", alt: "スケジュール画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+            <%= image_tag "howto/step3_schedule_2.png", alt: "スケジュール画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">日程表TOP画面から予定を追加ボタンを選択してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_schedule_3.png", alt: "スケジュール画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">スケジュールの時間、内容を入力し追加ボタンを押してください。</p>
+          <p class="text-sm sm:text-xs text-gray-700">パレード等時間を動かしたくない予定の場合は押しピンマークで強調することができます。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_schedule_4.png", alt: "スケジュール画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">スケジュールを削除したい時は、編集画面から削除ボタンを押してください</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_schedule_5.png", alt: "スケジュール画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+        </div>
+  </div>
+  </div>
+
+  <div class="bg-white shadow-md rounded p-4 mb-6">
+        <div id="payment">
+          <h3 class="text-sm sm:text-xs font-bold">⚫︎ 精算表</h3>
+          <p class="text-sm sm:text-xs font-bold">支払情報を登録し、旅行後に誰がいくら払ったかを簡単に確認できます。</p>
+          <p class="text-sm sm:text-xs text-gray-700">支払先の追加方法</p>
+          <p class="text-sm sm:text-xs text-gray-700">精算表TOP画面から支払い追加ボタンを押します。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_payment_1.png", alt: "精算表画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">支払い情報を入力し追加ボタンを押します。</p>
+          <p class="text-sm sm:text-xs text-gray-700">レシート画像を添付したい場合は、画像ファイルを選択してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_payment_2.png", alt: "精算表画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">支払い情報を修正したい場合は、修正ボタンを押して内容を変更してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_payment_3.png", alt: "精算表画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">支払い情報を削除したい場合は、修正ボタンを押して修正画面から削除ボタンを押してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_payment_4.png", alt: "精算表画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">支払い先を指定して、支払いへの合計金額を確認することができます。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_payment_5.png", alt: "精算表画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+        </div>
+  </div>
+
+  <div class="bg-white shadow-md rounded p-4 mb-6">
+        <div id="outfit">
+          <h3 class="text-sm sm:text-xs font-bold">⚫︎ 服装セット</h3>
+          <p class="text-sm sm:text-xs font-bold">カチューシャ・服・バッグ・靴などのコーデを記録・共有できます。同行者のコーデも見られます。</p>
+          <p class="text-sm sm:text-xs text-gray-700">服装セット一覧TOP画面から新規作成ボタンを押します。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_outfit_1.png", alt: "服装セット画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">登録したい服装セット名を入力し、画像を選択します。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_outfit_2.png", alt: "服装セット画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">一覧に登録した服装セット名、ユーザー名、画像が表示されます。</p>
+          <p class="text-sm sm:text-xs text-gray-700">編集したい場合は、編集ボタンを押してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_outfit_3.png", alt: "服装セット画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+          <p class="text-sm sm:text-xs text-gray-700">削除したい場合は、編集画面の下部にある削除ボタンを押してください。</p>
+          <div class="mt-3 text-center">
+            <%= image_tag "howto/step3_outfit_4.png", alt: "服装セット画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="bg-white shadow-md rounded p-4 mb-6">
+    <div id="members" >
+    <h3 class="text-sm sm:text-xs font-bold">⚫︎ メンバー一覧</h3>
+    <p class="text-sm sm:text-xs font-bold">現在その部屋に参加しているユーザーの一覧を確認・管理できます。</p>
+    <p class="text-sm sm:text-xs text-gray-700">一覧にはユーザー名が表示され、管理者は削除ボタンからメンバーを削除することができます。</p>
+    <p class="text-sm sm:text-xs text-gray-700">また、LINEの共有ボタンから部屋の番号・パスワードを招待相手に送信できます。</p>
+    <div class="mt-3 text-center">
+      <%= image_tag "howto/step3_member_1.png", alt: "メンバー一覧画面", class: "w-full max-w-xs mx-auto rounded shadow" %>
+    </div>
+  </div>
+
+
+    <!-- ナビゲーション説明（任意） -->
     <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎お気に入り登録</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">ディズニーで食べたいフードや買いたいグッズを画像付きで記録できます</p>
+      <div id="information">
+        <h2 class="text-md sm:text-sm font-bold mb-2">補足情報</h2>
+        <p class="text-sm sm:text-xs text-gray-700 mb-1">・スマホやPCで利用可能です（推奨ブラウザ：Safari, Chrome）。</p>
+        <p class="text-sm sm:text-xs text-gray-700">・登録した情報は外部に公開されることはありません。</p>
+      </div>
     </div>
 
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎精算管理</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">支払い内容や金額を記録し、グループ旅行後の割り勘に活用できます</p>
-    </div>
-
-    <div class="bg-white shadow-md rounded p-4">
-      <h2 class="text-md sm:text-sm font-bold mb-2">⚫︎コーデ記録</h2>
-      <p class="text-sm sm:text-xs text-gray-700 mb-2">「耳・服・バッグ・靴」などのコーディネートを記録・共有できます</p>
-    </div>
-
+    <!-- ログインボタン -->
     <div class="text-center mt-4">
+      <p class="text-sm text-gray-600 mb-1">準備ができたら、ログイン画面へ</p>
       <%= link_to 'ログインはこちら', login_path, class: "text-blue-500 hover:text-blue-700 font-bold" %>
     </div>
 
