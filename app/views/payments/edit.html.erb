@@ -1,10 +1,7 @@
 <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
   <!-- ヘッダー部分：精算編集とハンバーガーメニュー -->
   <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
-    <h1 class="text-lg sm:text-base font-bold mx-auto">
-      精算編集
-    </h1>
-    <!-- ハンバーガーメニュー -->
+    <h1 class="text-lg sm:text-base font-bold mx-auto">精算編集</h1>
     <div>
       <%= render 'shared/hamburger_menu' %>
     </div>
@@ -55,11 +52,15 @@
         <%= f.file_field :receipt_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
       </div>
 
-      <!-- 削除ボタンと更新ボタン -->
-      <div class="flex justify-between items-center mt-4">
-        <%= link_to '削除', room_payment_path(@room, @payment), data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: "bg-red-600 hover:bg-red-800 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline" %>
+      <!-- 更新ボタン（中央） -->
+      <div class="flex justify-center items-center mt-4">
         <%= f.submit "更新", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline" %>
       </div>
     <% end %>
+
+    <!-- 削除ボタン：form_withの外に出して下に配置 -->
+    <div class="flex justify-ecenter items-center mt-4 px-8 sm:px-4">
+      <%= button_to '削除', room_payment_path(@room, @payment), method: :delete, data: { confirm: '本当に削除しますか？' }, form: { class: "inline" }, class: "bg-red-600 hover:bg-red-800 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
   </div>
 </div>

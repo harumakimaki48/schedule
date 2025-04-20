@@ -1,18 +1,16 @@
 <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
   <!-- ヘッダー部分：服装セット編集とハンバーガーメニュー -->
   <div class="flex justify-between items-center px-4 py-2 sm:px-2 sm:py-1 bg-gray-200">
-    <h1 class="text-lg sm:text-base font-bold mx-auto">
-      服装セット編集
-    </h1>
-    <!-- ハンバーガーメニュー -->
+    <h1 class="text-lg sm:text-base font-bold mx-auto">服装セット編集</h1>
     <div>
       <%= render 'shared/hamburger_menu' %>
     </div>
   </div>
 
-  <div class="max-w-screen-md mx-auto bg-gray-100 p-6 sm:p-4 rounded-lg">
+  <!-- フォーム本体 -->
+  <div class="mt-4">
     <%= form_with model: [@room, @outfit], local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 sm:px-4 sm:pt-4 sm:pb-4 mb-4" do |form| %>
-      
+
       <!-- セット名 -->
       <div class="mb-4">
         <%= form.label :name, 'セット名', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
@@ -28,64 +26,66 @@
             <%= image_tag @outfit.headband_image, class: 'w-32 h-32 object-cover' %>
           </div>
         <% end %>
-        <%= form.file_field :headband_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        <%= form.file_field :headband_image,class: 'w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700hover:file:bg-blue-100 text-sm truncate max-w-full' %>
       </div>
 
       <!-- 服 -->
       <div class="mb-4">
         <%= form.label :clothing_image, '服', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
         <% if @outfit.clothing_image.attached? %>
-          <div class="mb-2">
-            <p class="text-gray-600 text-sm sm:text-xs">現在の画像:</p>
-            <%= image_tag @outfit.clothing_image, class: 'w-32 h-32 object-cover' %>
-          </div>
-        <% end %>
-        <%= form.file_field :clothing_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-      </div>
+      <div class="mb-2">
+        <p class="text-gray-600 text-sm sm:text-xs">現在の画像:</p>
+        <%= image_tag @outfit.clothing_image, class: 'w-32 h-32 object-cover' %>
+    </div>
+  <% end %>
+  <%= form.file_field :clothing_image, class: 'w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-sm truncate max-w-full' %>
+</div>
 
       <!-- バッグ -->
       <div class="mb-4">
-        <%= form.label :bag_image, 'バッグ', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
-        <% if @outfit.bag_image.attached? %>
-          <div class="mb-2">
-            <p class="text-gray-600 text-sm sm:text-xs">現在の画像:</p>
-            <%= image_tag @outfit.bag_image, class: 'w-32 h-32 object-cover' %>
-          </div>
-        <% end %>
-        <%= form.file_field :bag_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+          <%= form.label :bag_image, 'バッグ', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+          <% if @outfit.bag_image.attached? %>
+        <div class="mb-2">
+          <p class="text-gray-600 text-sm sm:text-xs">現在の画像:</p>
+         <%= image_tag @outfit.bag_image, class: 'w-32 h-32 object-cover' %>
+        </div>
+         <% end %>
+        <%= form.file_field :bag_image, class: 'w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-sm truncate max-w-full' %>
       </div>
 
       <!-- 靴 -->
       <div class="mb-4">
-        <%= form.label :shoes_image, '靴', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
-        <% if @outfit.shoes_image.attached? %>
-          <div class="mb-2">
+          <%= form.label :shoes_image, '靴', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+          <% if @outfit.shoes_image.attached? %>
+         <div class="mb-2">
             <p class="text-gray-600 text-sm sm:text-xs">現在の画像:</p>
             <%= image_tag @outfit.shoes_image, class: 'w-32 h-32 object-cover' %>
-          </div>
+        </div>
         <% end %>
-        <%= form.file_field :shoes_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+          <%= form.file_field :shoes_image, class: 'w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-sm truncate max-w-full' %>
       </div>
 
-      <!-- 更新・削除ボタン -->
-      <div class="flex justify-between">
-      <%= button_to '削除', room_outfit_path(@room, @outfit), 
-      method: :delete, 
-      data: { turbo: false, confirm: '削除しますか？' }, 
-      class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>        <%= form.submit '更新', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>
+      <!-- 更新ボタン -->
+      <div class="flex justify-center mt-4">
+        <%= form.submit '更新', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>
       </div>
     <% end %>
+
+    <!-- 削除ボタン：form_with の外で背景の中 -->
+    <div class="flex justify-center mt-4 px-8 sm:px-4">
+      <%= button_to '削除', room_outfit_path(@room, @outfit), method: :delete, data: { confirm: '削除しますか？' }, form: { class: 'inline' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 sm:py-1 px-4 sm:px-2 rounded focus:outline-none focus:shadow-outline' %>
+    </div>
   </div>
+
+  <!-- バリデーションエラー表示 -->
+  <% if @outfit.errors.any? %>
+    <div class="text-red-500 mt-4">
+      <h2>入力エラーが発生しました:</h2>
+      <ul class="text-sm sm:text-xs">
+        <% @outfit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>
-
-<% if @outfit.errors.any? %>
-  <div class="text-red-500">
-    <h2>入力エラーが発生しました:</h2>
-    <ul class="text-sm sm:text-xs">
-      <% @outfit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-

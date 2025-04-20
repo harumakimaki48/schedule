@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:user_number], params[:password])
+    @user = login(params[:email], params[:password])
     if @user
       # トークン生成と保存
       @user.generate_remember_token
@@ -37,30 +37,19 @@ class SessionsController < ApplicationController
     # LINEログイン時のユーザー作成・取得処理
     user = User.find_or_initialize_by(uid: auth[:uid], provider: "line") do |u|
       u.user_name = auth[:info][:name]
-      u.user_number ||= generate_unique_user_number # ユニークな user_number を設定
+      u.email = auth[:info][:email].presence
       u.role = :user
     end
 
     if user.save(validate: false)
       auto_login(user)
-
       # トークン生成と保存
       user.generate_remember_token
       cookies.permanent.signed[:remember_token] = user.remember_token
-
       redirect_to login_room_path, notice: "LINEログインに成功しました"
     else
       Rails.logger.error "ユーザー保存エラー: #{user.errors.full_messages.join(', ')}"
       redirect_to login_path, alert: "LINEログインに失敗しました"
-    end
-  end
-
-  private
-
-  def generate_unique_user_number
-    loop do
-      unique_number = "line_#{SecureRandom.hex(5)}"
-      break unique_number unless User.exists?(user_number: unique_number)
     end
   end
 end
