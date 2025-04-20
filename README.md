@@ -60,8 +60,8 @@ https://schedule-g574.onrender.com/login
 
 | ユーザー | メールアドレス         | パスワード  |
 |----------|------------------------|-------------|
-| A        | test1@example.com      | password    |
-| B        | test2@example.com      | password    |
+| 山田太郎  | test1@example.com      | password    |
+| 佐藤花子  | test2@example.com      | password    |
 
 **🛏 テストルーム**  
 - 部屋番号：`9999`  
@@ -91,7 +91,7 @@ https://schedule-g574.onrender.com/login
 
 
 ※ルーム作成後に別アカウントで参加して、複数人操作をお試しいただけます。
-※アプリの使い方は、ログイン後の画面上部からいつでも確認できます。
+※アプリの使い方は、ログイン前の画面より確認いただけます。
 
 
 
