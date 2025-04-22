@@ -37,20 +37,21 @@
 
       <!-- レシート画像 -->
       <div class="mb-4">
-        <%= f.label :receipt_image, 'レシート画像', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+      <%= f.label :receipt_image, 'レシート画像', class: 'block text-gray-700 text-sm sm:text-xs font-bold mb-2' %>
+    
+      <% if @payment.receipt_image.attached? %>
+        <div class="mb-2">
+          <%= link_to 'レシート (現在のファイル)', url_for(@payment.receipt_image), target: '_blank', class: 'text-blue-500' %>
+        </div>
+        <div class="flex items-center mb-4">
+          <%= check_box_tag "payment[remove_receipt_image]", "1" %>
+          <%= label_tag "payment_remove_receipt_image", "レシートを削除する", class: "text-sm sm:text-xs text-gray-700 ml-2" %>
+        </div>
+      <% end %>
+    
+      <%= f.file_field :receipt_image, class: "w-full file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-sm truncate max-w-full" %>
+    </div>
 
-        <% if @payment.receipt_image.attached? %>
-          <div class="mb-2">
-            <%= link_to 'レシート (現在のファイル)', url_for(@payment.receipt_image), target: '_blank', class: 'text-blue-500' %>
-          </div>
-          <div class="flex items-center mb-4">
-            <%= f.check_box :remove_receipt_image %>
-            <%= f.label :remove_receipt_image, 'レシートを削除する', class: 'text-sm sm:text-xs text-gray-700 ml-2' %>
-          </div>
-        <% end %>
-
-        <%= f.file_field :receipt_image, class: 'shadow appearance-none border rounded w-full py-2 sm:py-1 px-3 sm:px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-      </div>
 
       <!-- 更新ボタン（中央） -->
       <div class="flex justify-center items-center mt-4">
