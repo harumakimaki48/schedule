@@ -23,7 +23,7 @@
 </div>
 
   <!-- 合計金額表示と新規追加ボタン -->
-  <div class="flex justify-between items-center mt-4">
+  <div class="flex justify-between items-center mt-4 mb-2">
     <% if @total_amount.present? %>
       <div class="text-lg font-bold sm:text-base">
         <%= @filtered_user_name %>へ支払い: <%= number_with_delimiter(@total_amount.to_i, delimiter: ",") %>円
@@ -37,9 +37,9 @@
   </div>
 
   <!-- 支払いごとにBoxを分けて表示 -->
-  <div class="mt-6 space-y-6"> <!-- Box間のスペースを広げる -->
+  <div class="mt-6 space-y-6"> 
     <% @payments.each do |payment| %>
-      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-2">
         <!-- 1行目: 支払先と修正ボタン -->
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg font-bold"><%= payment.recipient&.user_name || 'なし' %></h2>

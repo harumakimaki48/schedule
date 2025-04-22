@@ -58,6 +58,11 @@ class PaymentsController < ApplicationController
   end
 
   def update
+    # レシート画像削除チェック
+    if params[:payment][:remove_receipt_image] == "1"
+      @payment.receipt_image.purge if @payment.receipt_image.attached?
+    end
+
     if @payment.update(payment_params)
       redirect_to room_payments_path(@room), notice: "支払が更新されました"
     else
